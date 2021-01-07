@@ -1,14 +1,21 @@
 import React from "react";
 import ReactDom from "react-dom";
 
+//CSS
+import "./index.css";
 //1
 // it is a stateless functional component
 // it ALWAYS returns JSX  it can be empty tags as well
 
 function BookList() {
   return (
-    <section>
-      This is a BookList!
+    <section className="booklist">
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+      <Book />
+      <Book />
       <Book />
     </section>
   );
@@ -16,7 +23,7 @@ function BookList() {
 
 const Book = () => {
   return (
-    <article>
+    <article className="book">
       <Image />
       <Title />
       <Author />
@@ -35,6 +42,11 @@ const Image = () => {
 
 const Title = () => <h1>Ikigai</h1>;
 
-const Author = () => <h4>Héctor García</h4>;
+//IT uses JSX style
+const Author = () => (
+  <h4 style={{ color: "#617d89", fontsize: "0.75rem", marginTop: "0.25rem" }}>
+    Héctor García
+  </h4>
+);
 //2
 ReactDom.render(<BookList />, document.getElementById("root"));
