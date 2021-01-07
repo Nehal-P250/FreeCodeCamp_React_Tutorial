@@ -8,7 +8,9 @@ import ReactDom from "react-dom";
 function Greeting() {
   return (
     <div>
-      <h4>Hello World!</h4>;
+      <h4>Hello World!</h4>;{/* nesting component */}
+      <Person />
+      <Message />
     </div>
   );
 }
@@ -31,6 +33,14 @@ function Greeting() {
  * close every element
  * formatting.
  */
+
+//if function is on same line then no return keyword is required for
+//arrow function
+const Person = () => <h2> john doe </h2>;
+
+const Message = () => {
+  return <p>sample message </p>;
+};
 
 //2
 ReactDom.render(<Greeting />, document.getElementById("root"));
