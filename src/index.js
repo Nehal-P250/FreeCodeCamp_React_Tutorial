@@ -5,42 +5,36 @@ import ReactDom from "react-dom";
 // it is a stateless functional component
 // it ALWAYS returns JSX  it can be empty tags as well
 
-function Greeting() {
+function BookList() {
   return (
-    <div>
-      <h4>Hello World!</h4>;{/* nesting component */}
-      <Person />
-      <Message />
-    </div>
+    <section>
+      This is a BookList!
+      <Book />
+    </section>
   );
 }
 
-// Non JSX i.e directly using React.createElement
-// const Greeting = () => {
-//   return React.createElement(
-//     "div",
-//     {},
-//     React.createElement("h1", {}, "Hello World!")
-//   );
-// };
-
-/*  JSX RULES
- * returns single element --> i.e. the return element should have single parent
- * i.e. U cant return <div></div> <div></div> (only return 1 element.)
- * div/ section / article or Fragment
- * use camelCase for html attributes
- * className instead of class
- * close every element
- * formatting.
- */
-
-//if function is on same line then no return keyword is required for
-//arrow function
-const Person = () => <h2> john doe </h2>;
-
-const Message = () => {
-  return <p>sample message </p>;
+const Book = () => {
+  return (
+    <article>
+      <Image />
+      <Title />
+      <Author />
+    </article>
+  );
 };
 
+const Image = () => {
+  return (
+    <img
+      src="https://images-eu.ssl-images-amazon.com/images/I/81l3rZK4lnL._AC_UL200_SR200,200_.jpg"
+      alt=""
+    />
+  );
+};
+
+const Title = () => <h1>Ikigai</h1>;
+
+const Author = () => <h4>Héctor García</h4>;
 //2
-ReactDom.render(<Greeting />, document.getElementById("root"));
+ReactDom.render(<BookList />, document.getElementById("root"));
