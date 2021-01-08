@@ -7,7 +7,7 @@ import "./index.css";
 // it is a stateless functional component
 // it ALWAYS returns JSX  it can be empty tags as well
 
-const SampleBooks = [
+const books = [
   {
     img:
       "https://images-eu.ssl-images-amazon.com/images/I/81l3rZK4lnL._AC_UL200_SR200,200_.jpg",
@@ -22,24 +22,33 @@ const SampleBooks = [
   },
 ];
 
-const names = ["Hello", "World", "Hello Again"];
-const newName = names.map((name) => {
-  return <h1>{name}</h1>;
-});
 function BookList() {
   return (
     <section className="booklist">
-      {/* if we try to render {SampleBooks} then we will get error as it 
-  wont render as SampelBooks contains object
-  on the other hand we are able to render {names} as it is string 
-  array., it will be rendered plainly so to allow html formating 
-  we can use map method , (shown with newNames variable.)  
-  So in react we can right away render an array but it cant be an
-  array of objects.*/}
-      <h1>Names</h1>
-      {names}
-      <h2>Names with map</h2>
-      {newName}
+      {books.map((book) => {
+        {
+          /* Method 1 ==> here we are not using the Book component rather 
+        simply rendering what ever is visible */
+        }
+        {
+          /* const { img, title, author } = book; */
+        }
+        {
+          /* return (
+          <div>
+            <img src={img} alt=""></img>
+            <h1>{title}</h1>
+            <h3>{author}</h3>
+          </div>
+        ); */
+        }
+
+        {
+          /* Method 2 ==> Using Book component and passing
+         in the book object from the book list */
+        }
+        return <Book book_obj={book}></Book>;
+      })}
     </section>
   );
 }
@@ -50,7 +59,7 @@ const Book = (props) => {
   console.log(props);
   //destructuring the props object ,
   //to get individual properties
-  const { title, author, img, children } = props;
+  const { title, author, img, children } = props.book_obj;
   return (
     <article className="book">
       <img src={img} alt="" />
