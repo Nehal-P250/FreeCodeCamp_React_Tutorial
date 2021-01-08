@@ -9,12 +9,21 @@ import "./index.css";
 
 const books = [
   {
+    id: 1,
     img:
       "https://images-eu.ssl-images-amazon.com/images/I/81l3rZK4lnL._AC_UL200_SR200,200_.jpg",
     title: "Ikigai",
     author: "Héctor García",
   },
   {
+    id: 2,
+    img:
+      "https://images-eu.ssl-images-amazon.com/images/I/81l3rZK4lnL._AC_UL200_SR200,200_.jpg",
+    title: "Ikigai",
+    author: "Héctor García",
+  },
+  {
+    id: 3,
     img:
       "https://images-eu.ssl-images-amazon.com/images/I/81l3rZK4lnL._AC_UL200_SR200,200_.jpg",
     title: "Ikigai",
@@ -27,27 +36,16 @@ function BookList() {
     <section className="booklist">
       {books.map((book) => {
         {
-          /* Method 1 ==> here we are not using the Book component rather 
-        simply rendering what ever is visible */
+          /* simply returning a list wiht no key (unique identifier will generate error)
+        react usually needs a unique identifier for each item in the list , 
+        usually we will use api which have some unique key , here we are using id as 
+        unique identifier */
+          {
+            /* ... is spread operation whihc is sending individual attributes of book Object
+         simly rest is there MOREINFOR ==> https://www.youtube.com/watch?v=DoIGxx7P-ps  */
+          }
         }
-        {
-          /* const { img, title, author } = book; */
-        }
-        {
-          /* return (
-          <div>
-            <img src={img} alt=""></img>
-            <h1>{title}</h1>
-            <h3>{author}</h3>
-          </div>
-        ); */
-        }
-
-        {
-          /* Method 2 ==> Using Book component and passing
-         in the book object from the book list */
-        }
-        return <Book book_obj={book}></Book>;
+        return <Book key={book.id} {...book}></Book>;
       })}
     </section>
   );
@@ -59,7 +57,9 @@ const Book = (props) => {
   console.log(props);
   //destructuring the props object ,
   //to get individual properties
-  const { title, author, img, children } = props.book_obj;
+  const { title, author, img, children } = props;
+  // the above statement .books_obj is no longer required as we are sending
+  // id, src, title, author etc. using spread operator.
   return (
     <article className="book">
       <img src={img} alt="" />
