@@ -7,31 +7,39 @@ import "./index.css";
 // it is a stateless functional component
 // it ALWAYS returns JSX  it can be empty tags as well
 
-const firstBook = {
-  img:
-    "https://images-eu.ssl-images-amazon.com/images/I/81l3rZK4lnL._AC_UL200_SR200,200_.jpg",
-  title: "Ikigai",
-  author: "Héctor García",
-};
+const SampleBooks = [
+  {
+    img:
+      "https://images-eu.ssl-images-amazon.com/images/I/81l3rZK4lnL._AC_UL200_SR200,200_.jpg",
+    title: "Ikigai",
+    author: "Héctor García",
+  },
+  {
+    img:
+      "https://images-eu.ssl-images-amazon.com/images/I/81l3rZK4lnL._AC_UL200_SR200,200_.jpg",
+    title: "Ikigai",
+    author: "Héctor García",
+  },
+];
 
+const names = ["Hello", "World", "Hello Again"];
+const newName = names.map((name) => {
+  return <h1>{name}</h1>;
+});
 function BookList() {
   return (
     <section className="booklist">
-      <Book
-        img={firstBook.img}
-        title={firstBook.title}
-        author={firstBook.author}
-      >
-        <p>
-          the props objec can be destrucuted in function arguments itsefl liek
-          const Book
-        </p>
-      </Book>
-      <Book
-        img={firstBook.img}
-        title={firstBook.title}
-        author={firstBook.author}
-      />
+      {/* if we try to render {SampleBooks} then we will get error as it 
+  wont render as SampelBooks contains object
+  on the other hand we are able to render {names} as it is string 
+  array., it will be rendered plainly so to allow html formating 
+  we can use map method , (shown with newNames variable.)  
+  So in react we can right away render an array but it cant be an
+  array of objects.*/}
+      <h1>Names</h1>
+      {names}
+      <h2>Names with map</h2>
+      {newName}
     </section>
   );
 }
