@@ -21,7 +21,12 @@ function BookList() {
         img={firstBook.img}
         title={firstBook.title}
         author={firstBook.author}
-      />
+      >
+        <p>
+          the props objec can be destrucuted in function arguments itsefl liek
+          const Book
+        </p>
+      </Book>
       <Book
         img={firstBook.img}
         title={firstBook.title}
@@ -31,14 +36,21 @@ function BookList() {
   );
 }
 
+//the props objec can be destrucuted in function arguments itsefl
+//like const Book = ({title,author,img}) =>{...}
 const Book = (props) => {
   console.log(props);
-  const { title, author, img } = props;
+  //destructuring the props object ,
+  //to get individual properties
+  const { title, author, img, children } = props;
   return (
     <article className="book">
       <img src={img} alt="" />
       <h1>{title}</h1>
       <h4>{author}</h4>
+      {/* children :  is everything kept between 
+      the opening and closing tag here it is <Book> </Book>tags. */}
+      {children}
     </article>
   );
 };
