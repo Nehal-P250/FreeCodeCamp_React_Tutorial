@@ -4,31 +4,21 @@ import ReactDom from "react-dom";
 //CSS
 import "./index.css";
 
-const books = [
-  {
-    id: 1,
-    img:
-      "https://images-eu.ssl-images-amazon.com/images/I/81l3rZK4lnL._AC_UL200_SR200,200_.jpg",
-    title: "Ikigai",
-    author: "Héctor García",
-  },
-  {
-    id: 2,
-    img:
-      "https://images-eu.ssl-images-amazon.com/images/I/81cpDaCJJCL._AC_UL200_SR200,200_.jpg",
-    title: "The Psychology of Money",
-    author: "Morgan Housel",
-  },
-  {
-    id: 3,
-    img:
-      "https://images-eu.ssl-images-amazon.com/images/I/91bYsX41DVL._AC_UL200_SR200,200_.jpg",
-    title: "Atomic Habits",
-    author: "James Clear",
-  },
-];
+//importing seperated files
+//1> this is named import
+import { books } from "./books_data.js";
+//2> default export
+//fomr Book.js we are exporting Book but here
+//we can call it as Abc etc , and everyting will still
+//work , this is advantage of default export
+//e.g. ==> import Abc from "./Book"  will also work
+import Book from "./Book.js";
+
+//importing from other folder
+import { greeting } from "./testing/testing";
 
 function BookList() {
+  console.log(greeting);
   return (
     <section className="booklist">
       {books.map((book) => {
@@ -37,55 +27,5 @@ function BookList() {
     </section>
   );
 }
-
-const Book = (props) => {
-  console.log(props);
-  const { title, author, img, children } = props;
-
-  // we need 1> attribute and 2> eventHandler to set an event handler inreact
-  // use camelCase for all event like onClick instead of onclick.
-  const clickHandler = (e) => {
-    alert("hello world");
-    console.log(e);
-    console.log(e.target);
-  };
-
-  const complexHandler = (author) => {
-    console.log(author);
-  };
-
-  return (
-    <article
-      className="book"
-      onMouseOver={() => {
-        console.log(title);
-      }}
-    >
-      <img src={img} alt="" />
-      {/* event handler as an inline function */}
-      <h1
-        onClick={() => {
-          console.log(title);
-        }}
-      >
-        {title}
-      </h1>
-      <h4>{author}</h4>
-      {/* event handler as a refference */}
-      <button type="button" onClick={clickHandler}>
-        example
-      </button>
-
-      {/* if we want to pass an argument to the event handler, then doing it as shown below 
-      will invoke the function at the time page is rendered */}
-      {/* <button type="button" onClick={complexHandler(author)}>complex_example</button> */}
-
-      {/* so to invoke the function when an event occur we must write it as an arrow function */}
-      <button type="button" onClick={() => complexHandler(author)}>
-        complex_example
-      </button>
-    </article>
-  );
-};
 
 ReactDom.render(<BookList />, document.getElementById("root"));
